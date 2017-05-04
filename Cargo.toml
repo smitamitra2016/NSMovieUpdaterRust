@@ -1,0 +1,11 @@
+[package]
+name = "project4_run_command"
+version = "0.1.0"
+authors = ["smitamitra <smita.mitra@nomadrail.com>"]
+
+[dependencies]
+chrono = "0.3"
+
+[dependencies.error-chain]
+version = "0.10.0"
+default-features = false
