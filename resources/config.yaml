@@ -1,0 +1,6 @@
+host_path: "/home/smitamitra/.ssh/config"
+host_name_prefix: "Host rita"
+ssh_command: "ssh -o ConnectTimeout=5 -o StrictHostKeyChecking=no"
+##run_command: "\"ls -r\""
+run_command: "rsync --password-file=/var/ND/rita/config/rsync_pwd -aPv --exclude='rsync_pwd' --exclude='.pyc' --exclude='*.out' rsync://ns_user@172.16.211.20/RITA-SYNC/logs/NS_UPDATE/rita/* /var/ND/rita/ && rsync --password-file=/var/ND/rita/config/rsync_pwd -aPv --exclude='rsync_pwd' --exclude='.pyc' --exclude='*.out' rsync://ns_user@172.16.211.20/RITA-SYNC/logs/NS_UPDATE/ndtv/* /var/ND/ndtv/ "
+

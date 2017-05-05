@@ -5,6 +5,9 @@ authors = ["smitamitra <smita.mitra@nomadrail.com>"]
 
 [dependencies]
 chrono = "0.3"
+serde = "0.9"
+serde_derive = "0.9"
+serde_yaml = "=0.6.2"
 
 [dependencies.error-chain]
 version = "0.10.0"

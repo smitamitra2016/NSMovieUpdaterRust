@@ -1,0 +1,62 @@
+customer: "NIR"
+fleet: "Translink"
+num_wans: 3
+# Carriage pattern - this will determine what carriage CCU is located in by looking up designation.
+# For ex. "_5" will mean 2nd digit of CCU designation determines car and it is car 5 we have CCUs for
+# this fleet. Similary you can set "5" for using first digit as variable. And "__5" for 3rd digit. If this is
+# left empty then CCU designation = CCU carriage name. Also you can use "--5__" in which case first 2
+# characters are ignored.
+ccu_carriage_pattern: "_5"
+authentication: "nomad_aaa"
+designation_command: "/usr/local/bin/glider_lookup ccu designation"
+static_consist: true
+expected_carriages:
+    - "_3"
+    - "_5"
+    - "_4"
+
+ccu_users:
+  coova: "/sbin/chilli_query dhcp-list"
+  nomad_aaa: "/usr/sbin/ipset -L"
+
+big_query:
+  project_id: "oandmpoc"
+  dataset_id: "oandm_aggregated_poc"
+  table_names:
+    - "test_nomad_reporting"
+    - "test_nomad_reporting_archive"
+
+snmp:
+  pool_size: 10
+  access_points:
+    - model_name: "eltec_ap"
+      property_name: "num_users"
+      oid:
+        - "1.3.6.1.4.1.2021.8.1.2.200.101"
+        - "1.3.6.1.4.1.2021.8.1.2.201.101"
+        - "1.3.6.1.4.1.2021.8.1.2.202.101"
+        - "1.3.6.1.4.1.2021.8.1.2.220.101"
+        - "1.3.6.1.4.1.2021.8.1.2.221.101"
+        - "1.3.6.1.4.1.2021.8.1.2.222.101"
+      frequency_in_seconds: 10
+      v2_community_string: "nocqat"
+      pattern: ""
+
+    - model_name: "moxa_ap"
+      property_name: "num_users"
+      oid:
+        - "1.3.6.1.4.1.8691.15.7.1.11.13.1.4"
+      frequency_in_seconds: 10
+      v2_community_string: "nocqat"
+      pattern: ""
+
+  host_names:
+    - model_name: "eltec_ap"
+      oid: "1.3.6.1.2.1.1.1"
+      v2_community_string: "nocqat"
+
+    - model_name: "moxa_ap"
+      oid: "1.3.6.1.2.1.1.5"
+      v2_community_string: "nocqat"
+
+  switches: []
